@@ -1,3 +1,6 @@
 git init
 git add .
 git commit -m "CourseAI v1"
+git add server.js
+git commit -m "fix: static files path"
+git push origin main
