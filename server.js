@@ -11,7 +11,8 @@ const { MercadoPagoConfig, Preference, Payment } = require('mercadopago');
 const app = express();
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN || '*' }));
 app.use(express.json());
-app.use(express.static('.'));
+const path = require('path');
+app.use(express.static(path.join(__dirname)));
 
 // ── Mercado Pago ─────────────────────────────────────────────────────────────
 const mp = new MercadoPagoConfig({
