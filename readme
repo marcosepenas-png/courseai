@@ -4,3 +4,6 @@ git commit -m "CourseAI v1"
 git add server.js
 git commit -m "fix: static files path"
 git push origin main
+git add
+git commit -m "fix: static files"
+git push origin main
