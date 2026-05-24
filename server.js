@@ -175,9 +175,11 @@ app.post('/api/test-email', async (req, res) => {
 });
 
 // ── AUTH: Login admin ─────────────────────────────────────────────────────────
-const ADMIN_HASH = process.env.ADMIN_PASSWORD_HASH ||
-  bcrypt.hashSync(process.env.ADMIN_PASSWORD || 'courseai2024', 10);
-
+let ADMIN_HASH;
+setTimeout(() => {
+  ADMIN_HASH = process.env.ADMIN_PASSWORD_HASH ||
+    bcrypt.hashSync(process.env.ADMIN_PASSWORD || 'courseai2024', 10);
+}, 0);
 app.post('/api/auth/login', async (req, res) => {
   try {
     const { password } = req.body;
@@ -332,6 +334,8 @@ app.post('/api/generate-course', requireAuth, async (req, res) => {
 app.get('/api/health', (req, res) => {
   res.json({ status:'ok', mp:!!process.env.MP_ACCESS_TOKEN, anthropic:!!process.env.ANTHROPIC_API_KEY, email:!!process.env.SMTP_USER, timestamp:new Date().toISOString() });
 });
+process.on('uncaughtException', err => { console.error('ERROR:', err.message, err.stack); });
+process.on('unhandledRejection', r => { console.error('REJECTION:', r); });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
