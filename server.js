@@ -2,6 +2,7 @@
 // npm install express mercadopago cors dotenv nodemailer bcryptjs jsonwebtoken
 require('dotenv').config();
 const express     = require('express');
+const path = require('path');
 const cors        = require('cors');
 const nodemailer  = require('nodemailer');
 const bcrypt      = require('bcryptjs');
@@ -11,7 +12,6 @@ const { MercadoPagoConfig, Preference, Payment } = require('mercadopago');
 const app = express();
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN || '*' }));
 app.use(express.json());
-const path = require('path');
 app.use(express.static(path.join(__dirname)));
 
 // ── Mercado Pago ─────────────────────────────────────────────────────────────
