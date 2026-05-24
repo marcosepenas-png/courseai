@@ -8,3 +8,6 @@ git add
 git commit -m "fix: static files"
 git push origin main
 git status
+git add Dockerfile
+git commit -m "debug: listar archivos en container"
+git push origin main
