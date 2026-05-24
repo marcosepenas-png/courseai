@@ -7,3 +7,4 @@ git push origin main
 git add
 git commit -m "fix: static files"
 git push origin main
+git status
