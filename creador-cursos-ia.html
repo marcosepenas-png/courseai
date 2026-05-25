@@ -345,7 +345,8 @@ function renderCourse(c) {
     (c.proyecto_final ? '<div class="sales-section"><div class="sales-title">🏆 Proyecto final</div><div class="sales-copy" style="font-size:12px">' + (typeof c.proyecto_final === 'string' ? c.proyecto_final : c.proyecto_final.descripcion || c.proyecto_final.titulo || JSON.stringify(c.proyecto_final)) + '</div></div>' : '') +
     (ex.length ? '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales</div><div class="extras-grid">' + ex.join('') + '</div>' : '') +
     (sal.length ? '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales de venta</div>' + sal.join('') : '') +
-    '<div class="action-bar"><button class="btn btn-primary" onclick="exportPDF()">↓ PDF</button><button class="btn btn-ghost" onclick="copyCourse()">Copiar</button><button class="btn btn-ghost" onclick="resetAll()">Nuevo</button></div>';
+    '<div class="action-bar"><button class="btn btn-primary" onclick="exportPDF()">↓ PDF</button><button class="btn btn-mp" onclick="toggleMP()">💳 Mercado Pago</button><button class="btn btn-ghost" onclick="copyCourse()">Copiar</button><button class="btn btn-ghost" onclick="resetAll()">Nuevo</button></div>' +
+    '<div id="mp-panel" style="display:none;background:var(--bg2);border:1px solid rgba(0,158,227,0.2);border-radius:14px;padding:1.4rem;margin-top:1rem"><div style="font-size:14px;font-weight:500;margin-bottom:1rem">💳 Generar link de pago</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px"><div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:4px">PRECIO (ARS)</label><input type="number" id="mp-price" placeholder="Ej: 15000" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:9px 13px;font-size:14px;width:100%"></div><div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:4px">SERVIDOR</label><input type="text" id="mp-server" value="https://courseai.click" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:9px 13px;font-size:14px;width:100%"></div></div><button onclick="createMPPayment()" style="width:100%;padding:12px;border-radius:8px;background:rgba(0,158,227,0.1);color:#009ee3;border:1px solid rgba(0,158,227,0.25);font-family:DM Sans,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Generar link →</button><div id="mp-result" style="display:none;margin-top:1rem;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 14px"><a id="mp-pay-url" href="#" target="_blank" style="color:#009ee3;font-size:13px;word-break:break-all">—</a></div><div id="mp-err" style="color:#f08080;font-size:12px;margin-top:8px"></div></div>';
 
   document.getElementById('course-output').classList.add('visible');
 }
@@ -391,25 +392,27 @@ function exportPDF() {
 }
 function toggleMP() {
   var p = document.getElementById('mp-panel');
-  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+  if (p) p.style.display = p.style.display === 'none' ? 'block' : 'none';
 }
 
 async function createMPPayment() {
   var price = document.getElementById('mp-price').value;
-  var server = document.getElementById('mp-server').value.replace(/\/$/, '');
-  if (!price) { document.getElementById('mp-err').textContent = 'Ingresá el precio'; return; }
+  var server = (document.getElementById('mp-server').value || 'https://courseai.click').replace(/\/$/, '');
+  var errEl = document.getElementById('mp-err');
+  errEl.textContent = '';
+  if (!price) { errEl.textContent = 'Ingresá el precio'; return; }
   try {
     var r = await fetch(server + '/api/create-payment', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ courseTitle: courseData.titulo, courseSubtitle: courseData.subtitulo, price: parseFloat(price), currency: 'ARS', courseId: 'course-' + Date.now() })
+      body: JSON.stringify({ courseTitle: courseData.titulo, courseSubtitle: courseData.subtitulo || '', price: parseFloat(price), currency: 'ARS', courseId: 'course-' + Date.now() })
     });
     var d = await r.json();
-    if (!r.ok) throw new Error(d.error || 'Error');
+    if (!r.ok) throw new Error(d.error || 'Error ' + r.status);
     document.getElementById('mp-result').style.display = 'block';
     var el = document.getElementById('mp-pay-url');
     el.href = d.initPoint; el.textContent = d.initPoint;
     toast('Link de pago generado', '💳');
-  } catch(e) { document.getElementById('mp-err').textContent = e.message; }
+  } catch(e) { errEl.textContent = e.message; }
 }
 </script>
 </body>
