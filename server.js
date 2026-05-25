@@ -320,16 +320,20 @@ app.post('/api/webhook', async (req, res) => {
 app.post('/api/generate-course', async (req, res) => {
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json', 'x-api-key':process.env.ANTHROPIC_API_KEY, 'anthropic-version':'2023-06-01' },
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json', 
+        'x-api-key': process.env.ANTHROPIC_API_KEY, 
+        'anthropic-version': '2023-06-01' 
+      },
       body: JSON.stringify(req.body)
     });
-    res.json(await response.json());
+    const data = await response.json();
+    res.json(data);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
-
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get('/', (req, res) => {
   res.redirect('/creador-cursos-ia.html');
