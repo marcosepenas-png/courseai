@@ -297,8 +297,10 @@ async function generateCourse() {
     var d = await r.json();
     if (d.error) throw new Error(typeof d.error === 'string' ? d.error : JSON.stringify(d.error));
     if (!d.content || !d.content[0]) throw new Error('Respuesta inesperada: ' + JSON.stringify(d));
-    var raw = d.content[0].text.trim().replace(/^```json\n?/, '').replace(/\n?```$/, '').trim();
-    courseData = JSON.parse(raw);
+    var text = d.content[0].text.trim();
+    var match = text.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error('No se encontró JSON en la respuesta');
+    courseData = JSON.parse(match[0]);
     clearInterval(iv);
     document.getElementById('loading-state').classList.remove('visible');
     renderCourse(courseData);
