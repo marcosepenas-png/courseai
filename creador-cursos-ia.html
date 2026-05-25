@@ -386,6 +386,28 @@ function exportPDF() {
   doc.save(fn);
   toast('PDF descargado', '✓');
 }
+function toggleMP() {
+  var p = document.getElementById('mp-panel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+}
+
+async function createMPPayment() {
+  var price = document.getElementById('mp-price').value;
+  var server = document.getElementById('mp-server').value.replace(/\/$/, '');
+  if (!price) { document.getElementById('mp-err').textContent = 'Ingresá el precio'; return; }
+  try {
+    var r = await fetch(server + '/api/create-payment', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ courseTitle: courseData.titulo, courseSubtitle: courseData.subtitulo, price: parseFloat(price), currency: 'ARS', courseId: 'course-' + Date.now() })
+    });
+    var d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Error');
+    document.getElementById('mp-result').style.display = 'block';
+    var el = document.getElementById('mp-pay-url');
+    el.href = d.initPoint; el.textContent = d.initPoint;
+    toast('Link de pago generado', '💳');
+  } catch(e) { document.getElementById('mp-err').textContent = e.message; }
+}
 </script>
 </body>
 </html>
