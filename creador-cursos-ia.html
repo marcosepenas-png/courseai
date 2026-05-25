@@ -346,7 +346,7 @@ function renderCourse(c) {
     (ex.length ? '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales</div><div class="extras-grid">' + ex.join('') + '</div>' : '') +
     (sal.length ? '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales de venta</div>' + sal.join('') : '') +
     '<div class="action-bar"><button class="btn btn-primary" onclick="exportPDF()">↓ PDF</button><button class="btn btn-mp" onclick="toggleMP()">💳 Mercado Pago</button><button class="btn btn-ghost" onclick="copyCourse()">Copiar</button><button class="btn btn-ghost" onclick="resetAll()">Nuevo</button></div>' +
-    '<div id="mp-panel" style="display:none;background:var(--bg2);border:1px solid rgba(0,158,227,0.2);border-radius:14px;padding:1.4rem;margin-top:1rem"><div style="font-size:14px;font-weight:500;margin-bottom:1rem">💳 Generar link de pago</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px"><div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:4px">PRECIO (ARS)</label><input type="number" id="mp-price" placeholder="Ej: 15000" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:9px 13px;font-size:14px;width:100%"></div><div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:4px">SERVIDOR</label><input type="text" id="mp-server" value="https://courseai.click" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:9px 13px;font-size:14px;width:100%"></div></div><button onclick="createMPPayment()" style="width:100%;padding:12px;border-radius:8px;background:rgba(0,158,227,0.1);color:#009ee3;border:1px solid rgba(0,158,227,0.25);font-family:DM Sans,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Generar link →</button><div id="mp-result" style="display:none;margin-top:1rem;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 14px"><a id="mp-pay-url" href="#" target="_blank" style="color:#009ee3;font-size:13px;word-break:break-all">—</a></div><div id="mp-err" style="color:#f08080;font-size:12px;margin-top:8px"></div></div>';
+    '<div id="mp-panel" style="display:none;background:var(--bg2);border:1px solid rgba(0,158,227,0.2);border-radius:14px;padding:1.4rem;margin-top:1rem"><div style="font-size:14px;font-weight:500;margin-bottom:1rem">💳 Generar link de pago</div><div style="margin-bottom:14px"><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:8px">PLAN</label><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="plan-selector"><button class="plan-btn" data-usd="0" onclick="selectPlan(this)" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:10px;padding:10px 8px;cursor:pointer;text-align:left"><div style="font-size:11px;color:var(--text2);margin-bottom:2px">FREE</div><div style="font-size:16px;font-weight:600">USD 0</div><div style="font-size:10px;color:var(--text2);margin-top:2px">3 cursos/mes</div></button><button class="plan-btn" data-usd="19" onclick="selectPlan(this)" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:10px;padding:10px 8px;cursor:pointer;text-align:left"><div style="font-size:11px;color:var(--text2);margin-bottom:2px">STARTER</div><div style="font-size:16px;font-weight:600">USD 19<span style="font-size:11px;font-weight:400">/mes</span></div><div style="font-size:10px;color:var(--text2);margin-top:2px">15 cursos + PDF + MP</div></button><button class="plan-btn" data-usd="49" onclick="selectPlan(this)" style="background:var(--bg3);border:1px solid rgba(200,240,96,0.35);color:var(--text);border-radius:10px;padding:10px 8px;cursor:pointer;text-align:left"><div style="font-size:11px;color:#c8f060;margin-bottom:2px">PRO ✦</div><div style="font-size:16px;font-weight:600">USD 49<span style="font-size:11px;font-weight:400">/mes</span></div><div style="font-size:10px;color:var(--text2);margin-top:2px">Ilimitado + dominio propio</div></button><button class="plan-btn" data-usd="149" onclick="selectPlan(this)" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:10px;padding:10px 8px;cursor:pointer;text-align:left"><div style="font-size:11px;color:var(--text2);margin-bottom:2px">AGENCIA</div><div style="font-size:16px;font-weight:600">USD 149<span style="font-size:11px;font-weight:400">/mes</span></div><div style="font-size:10px;color:var(--text2);margin-top:2px">Multi-usuario + white label</div></button></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px"><div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:4px">PRECIO (ARS)</label><input type="number" id="mp-price" placeholder="Seleccioná un plan" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:9px 13px;font-size:14px;width:100%" readonly></div><div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:4px">SERVIDOR</label><input type="text" id="mp-server" value="https://courseai.click" style="background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:8px;padding:9px 13px;font-size:14px;width:100%"></div></div><div id="mp-cotiz" style="font-size:11px;color:var(--text2);margin-bottom:12px;min-height:16px"></div><button onclick="createMPPayment()" style="width:100%;padding:12px;border-radius:8px;background:rgba(0,158,227,0.1);color:#009ee3;border:1px solid rgba(0,158,227,0.25);font-family:DM Sans,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Generar link →</button><div id="mp-result" style="display:none;margin-top:1rem;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:10px 14px"><a id="mp-pay-url" href="#" target="_blank" style="color:#009ee3;font-size:13px;word-break:break-all">—</a></div><div id="mp-err" style="color:#f08080;font-size:12px;margin-top:8px"></div></div>';
 
   document.getElementById('course-output').classList.add('visible');
 }
@@ -390,9 +390,49 @@ function exportPDF() {
   doc.save(fn);
   toast('PDF descargado', '✓');
 }
+var dolarBlue = 0;
+async function fetchDolar() {
+  try {
+    var r = await fetch('https://dolarapi.com/v1/dolares/blue');
+    var d = await r.json();
+    dolarBlue = d.venta || 0;
+  } catch(e) { dolarBlue = 0; }
+}
+fetchDolar();
+
+function selectPlan(btn) {
+  document.querySelectorAll('.plan-btn').forEach(function(b) {
+    b.style.borderColor = b.dataset.usd === '49' ? 'rgba(200,240,96,0.35)' : 'var(--border2)';
+    b.style.background = 'var(--bg3)';
+  });
+  btn.style.borderColor = '#009ee3';
+  btn.style.background = 'rgba(0,158,227,0.08)';
+  var usd = parseFloat(btn.dataset.usd);
+  var cotizEl = document.getElementById('mp-cotiz');
+  if (usd === 0) {
+    document.getElementById('mp-price').value = '';
+    document.getElementById('mp-price').placeholder = 'Plan gratuito';
+    cotizEl.textContent = 'Plan gratuito — sin cobro';
+    return;
+  }
+  if (dolarBlue > 0) {
+    var ars = Math.round(usd * dolarBlue);
+    document.getElementById('mp-price').value = ars;
+    cotizEl.textContent = 'USD ' + usd + ' × $' + dolarBlue + ' (dólar blue) = $' + ars.toLocaleString('es-AR') + ' ARS';
+  } else {
+    var arsFallback = Math.round(usd * 1250);
+    document.getElementById('mp-price').value = arsFallback;
+    cotizEl.textContent = 'USD ' + usd + ' × $1250 (cotización estimada) = $' + arsFallback.toLocaleString('es-AR') + ' ARS';
+  }
+}
+
 function toggleMP() {
   var p = document.getElementById('mp-panel');
-  if (p) p.style.display = p.style.display === 'none' ? 'block' : 'none';
+  if (p) {
+    var showing = p.style.display !== 'none';
+    p.style.display = showing ? 'none' : 'block';
+    if (!showing) fetchDolar();
+  }
 }
 
 async function createMPPayment() {
@@ -400,7 +440,9 @@ async function createMPPayment() {
   var server = (document.getElementById('mp-server').value || 'https://courseai.click').replace(/\/$/, '');
   var errEl = document.getElementById('mp-err');
   errEl.textContent = '';
-  if (!price) { errEl.textContent = 'Ingresá el precio'; return; }
+  var selectedPlan = document.querySelector('.plan-btn[style*="#009ee3"]');
+  if (selectedPlan && selectedPlan.dataset.usd === '0') { errEl.textContent = 'El plan Free no requiere pago.'; return; }
+  if (!price) { errEl.textContent = 'Seleccioná un plan primero'; return; }
   try {
     var r = await fetch(server + '/api/create-payment', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
