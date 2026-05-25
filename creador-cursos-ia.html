@@ -288,7 +288,7 @@ function toast(msg,icon='✓',ms=3000){
   setTimeout(()=>el.classList.remove('visible'),ms);
 }
 
-function goStep(n){
+(n){
   if(n===2){
     const t=document.getElementById('topic').value.trim();
     if(!t){document.getElementById('topic').style.borderColor='rgba(240,80,80,.5)';setTimeout(()=>document.getElementById('topic').style.borderColor='',2000);return;}
