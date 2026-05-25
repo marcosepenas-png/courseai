@@ -278,7 +278,8 @@ async function generateCourse() {
   prompt += 'TONO: ' + selectedTone[0] + '\n';
   prompt += 'EXTRAS: ' + selectedExtras.join(', ') + '\n';
   if (notes) prompt += 'NOTAS: ' + notes + '\n';
-  prompt += 'Responde ÚNICAMENTE con JSON válido sin markdown:\n';
+  prompt += 'Responde ÚNICAMENTE con JSON válido sin markdown, sin texto extra:\n';
+prompt += '{"titulo":"","subtitulo":"","nivel":"","duracion":"","precio_sugerido":"","promesa":"","para_quien":[],"no_para_quien":[],"modulos":[{"numero":1,"titulo":"","objetivo":"","duracion":"","clases":[{"titulo":"","descripcion":"","tipo":"video"}]}],"ejercicios":[],"recursos":[]}';
   prompt += '{"titulo":"","subtitulo":"","nivel":"","duracion":"","precio_sugerido":"","promesa":"","para_quien":[],"no_para_quien":[],"modulos":[{"numero":1,"titulo":"","objetivo":"","duracion":"","clases":[{"titulo":"","descripcion":"","tipo":"video"}]}],"ejercicios":[],"recursos":[],"proyecto_final":"","faq":[{"pregunta":"","respuesta":""}],"email_venta":"","landing_copy":"","posts_ig":[]}';
 
   try {
