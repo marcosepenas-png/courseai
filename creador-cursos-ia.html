@@ -279,7 +279,7 @@ async function generateCourse() {
   prompt += 'EXTRAS: ' + selectedExtras.join(', ') + '\n';
   if (notes) prompt += 'NOTAS: ' + notes + '\n';
   prompt += 'Responde ÚNICAMENTE con JSON válido sin markdown, sin texto extra:\n';
-prompt += '{"titulo":"","subtitulo":"","nivel":"","duracion":"","precio_sugerido":"","promesa":"","para_quien":[],"no_para_quien":[],"modulos":[{"numero":1,"titulo":"","objetivo":"","duracion":"","clases":[{"titulo":"","descripcion":"","tipo":"video"}]}],"ejercicios":[],"recursos":[]}';
+  prompt += '{"titulo":"","subtitulo":"","nivel":"","duracion":"","precio_sugerido":"","promesa":"","para_quien":[],"no_para_quien":[],"modulos":[{"numero":1,"titulo":"","objetivo":"","duracion":"","clases":[{"titulo":"","descripcion":"","tipo":"video"}]}],"ejercicios":[],"recursos":[]}';
   prompt += '{"titulo":"","subtitulo":"","nivel":"","duracion":"","precio_sugerido":"","promesa":"","para_quien":[],"no_para_quien":[],"modulos":[{"numero":1,"titulo":"","objetivo":"","duracion":"","clases":[{"titulo":"","descripcion":"","tipo":"video"}]}],"ejercicios":[],"recursos":[],"proyecto_final":"","faq":[{"pregunta":"","respuesta":""}],"email_venta":"","landing_copy":"","posts_ig":[]}';
 
   try {
@@ -327,8 +327,8 @@ function renderCourse(c) {
   if (c.faq && c.faq.length) ex.push('<div class="extra-card" style="grid-column:1/-1"><div class="extra-title">? FAQ</div><ul class="extra-list">' + c.faq.map(function(f) { return '<li><span><b>' + f.pregunta + '</b><br>' + f.respuesta + '</span></li>'; }).join('') + '</ul></div>');
 
   var sal = [];
-  if (c.email_venta) sal.push('<div class="sales-section"><div class="sales-title">📧 Email de lanzamiento</div><div class="sales-copy" style="white-space:pre-line;font-size:12px">' + c.email_venta + '</div></div>');
-  if (c.landing_copy) sal.push('<div class="sales-section"><div class="sales-title">🖥 Landing copy</div><div class="sales-copy" style="white-space:pre-line;font-size:12px">' + c.landing_copy + '</div></div>');
+  if (c.email_venta) sal.push('<div class="sales-section"><div class="sales-title">📧 Email de lanzamiento</div><div class="sales-copy" style="white-space:pre-line;font-size:12px">' + (typeof c.email_venta === 'string' ? c.email_venta : c.email_venta.cuerpo || c.email_venta.contenido || c.email_venta.texto || JSON.stringify(c.email_venta)) + '</div></div>');
+  if (c.landing_copy) sal.push('<div class="sales-section"><div class="sales-title">🖥 Landing copy</div><div class="sales-copy" style="white-space:pre-line;font-size:12px">' + (typeof c.landing_copy === 'string' ? c.landing_copy : c.landing_copy.contenido || c.landing_copy.texto || JSON.stringify(c.landing_copy)) + '</div></div>');
   if (c.posts_ig && c.posts_ig.length) sal.push('<div class="sales-section"><div class="sales-title">📱 Posts Instagram</div>' + c.posts_ig.map(function(p, i) { var txt = typeof p === 'string' ? p : p.contenido || p.texto || p.caption || JSON.stringify(p); return '<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)"><div style="font-size:10px;color:var(--text3);margin-bottom:3px">Post ' + (i+1) + '</div><div class="sales-copy" style="font-size:12px;white-space:pre-line">' + txt + '</div></div>'; }).join('') + '</div>');
 
   var pq = c.para_quien && c.para_quien.length ? '<div class="extra-card"><div class="extra-title">✓ Para quién</div><ul class="extra-list">' + c.para_quien.map(function(p) { return '<li>' + p + '</li>'; }).join('') + '</ul></div>' : '';
@@ -339,7 +339,7 @@ function renderCourse(c) {
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:.9rem">' + pq + npq + '</div>' +
     '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Estructura del curso</div>' +
     modH +
-    (c.proyecto_final ? '<div class="sales-section"><div class="sales-title">🏆 Proyecto final</div><div class="sales-copy" style="font-size:12px">' + c.proyecto_final + '</div></div>' : '') +
+    (c.proyecto_final ? '<div class="sales-section"><div class="sales-title">🏆 Proyecto final</div><div class="sales-copy" style="font-size:12px">' + (typeof c.proyecto_final === 'string' ? c.proyecto_final : c.proyecto_final.descripcion || c.proyecto_final.titulo || JSON.stringify(c.proyecto_final)) + '</div></div>' : '') +
     (ex.length ? '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales</div><div class="extras-grid">' + ex.join('') + '</div>' : '') +
     (sal.length ? '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales de venta</div>' + sal.join('') : '') +
     '<div class="action-bar"><button class="btn btn-primary" onclick="exportPDF()">↓ PDF</button><button class="btn btn-ghost" onclick="copyCourse()">Copiar</button><button class="btn btn-ghost" onclick="resetAll()">Nuevo</button></div>';
