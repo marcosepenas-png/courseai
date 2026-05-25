@@ -337,7 +337,7 @@ app.get('/api/health', (req, res) => {
 process.on('uncaughtException', err => { console.error('ERROR:', err.message, err.stack); });
 process.on('unhandledRejection', r => { console.error('REJECTION:', r); });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`\n🚀 CourseAI corriendo en http://localhost:${PORT}`);
   console.log(`   Mercado Pago: ${process.env.MP_ACCESS_TOKEN?'✓':'✗'}`);
