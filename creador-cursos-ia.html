@@ -8,15 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-:root{
-  --bg:#0d0d0f;--bg2:#141417;--bg3:#1c1c21;--bg4:#222228;
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
-  --text:#f0efe8;--text2:#9b9a94;--text3:#5a5955;
-  --accent:#c8f060;--accent2:#a8d040;
-  --purple:#8b7cf8;--amber:#f0a84a;--blue:#4a9eff;--green:#5de86a;
-  --mp:#009ee3;
-  --radius:14px;--radius-sm:8px;
-}
+:root{--bg:#0d0d0f;--bg2:#141417;--bg3:#1c1c21;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#f0efe8;--text2:#9b9a94;--text3:#5a5955;--accent:#c8f060;--accent2:#a8d040;--amber:#f0a84a;--mp:#009ee3;--green:#5de86a;--radius:14px;--radius-sm:8px;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6;}
 nav{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100;}
@@ -24,7 +16,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.1rem
 .logo-mark{width:30px;height:30px;border-radius:7px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;}
 .logo-text{font-family:'Instrument Serif',serif;font-size:19px;}
 .logo-badge{font-size:10px;padding:2px 7px;border-radius:20px;background:rgba(200,240,96,0.1);color:var(--accent);border:1px solid rgba(200,240,96,0.2);font-weight:500;}
-.nav-right{display:flex;gap:8px;}
 main{max-width:860px;margin:0 auto;padding:2rem 1.5rem 5rem;}
 .steps-bar{display:flex;align-items:center;margin-bottom:2.2rem;}
 .step-item{display:flex;align-items:center;gap:8px;flex:1;padding:8px 0;cursor:pointer;transition:opacity .2s;}
@@ -55,17 +46,14 @@ select option{background:var(--bg3);}
 .btn{padding:9px 20px;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
 .btn-primary{background:var(--accent);color:#000;}
 .btn-primary:hover{background:var(--accent2);}
-.btn-primary:disabled{opacity:.4;cursor:not-allowed;}
 .btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2);}
 .btn-ghost:hover{color:var(--text);background:var(--bg3);}
 .btn-amber{background:rgba(240,168,74,0.1);color:var(--amber);border:1px solid rgba(240,168,74,0.22);}
-.btn-amber:hover{background:rgba(240,168,74,0.2);}
 .btn-mp{background:rgba(0,158,227,0.1);color:var(--mp);border:1px solid rgba(0,158,227,0.25);}
-.btn-mp:hover{background:rgba(0,158,227,0.2);}
 .btn-row{display:flex;gap:10px;margin-top:1.4rem;}
 .gen-btn{width:100%;padding:13px;border-radius:var(--radius);background:var(--accent);color:#000;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:1.4rem;}
-.gen-btn:hover{background:var(--accent2);transform:translateY(-1px);}
-.gen-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.gen-btn:hover{background:var(--accent2);}
+.gen-btn:disabled{opacity:.4;cursor:not-allowed;}
 .loading-state{display:none;flex-direction:column;align-items:center;justify-content:center;padding:3rem;gap:.8rem;}
 .loading-state.visible{display:flex;}
 .loader{width:38px;height:38px;border-radius:50%;border:2px solid var(--border2);border-top-color:var(--accent);animation:spin 1s linear infinite;}
@@ -103,122 +91,52 @@ select option{background:var(--bg3);}
 .err{background:rgba(240,80,80,0.07);border:1px solid rgba(240,80,80,0.18);border-radius:var(--radius-sm);padding:11px 15px;font-size:12px;color:#f08080;margin-top:.9rem;display:none;}
 .err.visible{display:block;}
 .sec-div{height:1px;background:var(--border);margin:1.2rem 0;}
-
-/* ── MERCADO PAGO PANEL ─────────────────────────────────────── */
-.mp-panel{background:var(--bg2);border:1px solid rgba(0,158,227,0.2);border-radius:var(--radius);padding:1.4rem;margin-top:1.1rem;display:none;}
-.mp-panel.open{display:block;animation:fadeIn .25s ease;}
-.mp-header{display:flex;align-items:center;gap:12px;margin-bottom:1.1rem;}
-.mp-logo{width:36px;height:36px;border-radius:8px;background:rgba(0,158,227,0.1);display:flex;align-items:center;justify-content:center;font-size:17px;}
-.mp-title{font-size:14px;font-weight:500;}
-.mp-sub{font-size:11px;color:var(--text2);}
-.mp-tabs{display:flex;gap:6px;margin-bottom:1.1rem;border-bottom:1px solid var(--border);padding-bottom:10px;}
-.mp-tab{font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s;}
-.mp-tab.active{background:rgba(0,158,227,0.1);border-color:rgba(0,158,227,0.3);color:var(--mp);}
-.mp-tab-content{display:none;}
-.mp-tab-content.active{display:block;}
-.price-preview{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;margin-top:.8rem;display:flex;align-items:center;justify-content:space-between;}
-.price-big{font-family:'Instrument Serif',serif;font-size:2rem;color:var(--text);}
-.price-note{font-size:11px;color:var(--text2);text-align:right;}
-.qr-area{text-align:center;padding:1rem 0;}
-.qr-placeholder{width:140px;height:140px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text3);}
-.pay-link-box{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 14px;display:flex;align-items:center;gap:10px;margin-top:.8rem;}
-.pay-link-url{font-size:12px;color:var(--mp);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.status-chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:3px 10px;border-radius:20px;}
-.status-chip.pending{background:rgba(240,168,74,0.1);color:var(--amber);border:1px solid rgba(240,168,74,0.2);}
-.status-chip.approved{background:rgba(93,232,106,0.1);color:var(--green);border:1px solid rgba(93,232,106,0.2);}
-.status-chip.error{background:rgba(240,80,80,0.08);color:#f08080;border:1px solid rgba(240,80,80,0.18);}
-.status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
-.steps-list{margin-top:.8rem;}
-.mp-step{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
-.mp-step:last-child{border-bottom:none;}
-.mp-step-n{width:20px;height:20px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text2);flex-shrink:0;transition:all .3s;}
-.mp-step-n.done{background:rgba(93,232,106,0.12);border-color:var(--green);color:var(--green);}
-.mp-step-n.active{background:rgba(0,158,227,0.1);border-color:var(--mp);color:var(--mp);animation:pulse .9s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.mp-step-info
-.mp-step-t{font-size:12px;font-weight:500;}
-.mp-step-d{font-size:11px;color:var(--text2);margin-top:1px;}
-.notice{background:rgba(200,240,96,0.05);border:1px solid rgba(200,240,96,0.13);border-radius:var(--radius-sm);padding:9px 13px;font-size:11px;color:var(--accent);margin-bottom:1rem;line-height:1.5;}
-/* TOAST */
-.toast{position:fixed;bottom:22px;right:22px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:11px 18px;font-size:12px;display:none;align-items:center;gap:9px;z-index:9999;animation:slideUp .25s ease;}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:11px 18px;font-size:12px;display:none;align-items:center;gap:9px;z-index:9999;}
 .toast.visible{display:flex;}
-@keyframes slideUp{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
-/* HOTMART */
-.hotmart-panel{background:var(--bg2);border:1px solid rgba(240,168,74,0.18);border-radius:var(--radius);padding:1.4rem;margin-top:1rem;display:none;}
-.hotmart-panel.open{display:block;animation:fadeIn .25s ease;}
 @media(max-width:600px){.field-group,.field-group.thirds,.extras-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"><span id="ti"></span><span id="tm"></span></div>
-
 <nav>
   <div class="logo">
     <div class="logo-mark">✦</div>
     <span class="logo-text">CourseAI</span>
     <span class="logo-badge">Beta</span>
   </div>
-  <div class="nav-right">
+  <div style="display:flex;gap:8px;">
     <button class="btn btn-ghost" onclick="resetAll()">Nueva generación</button>
   </div>
 </nav>
-
 <main>
   <div class="steps-bar">
-    <div class="step-item active" id="step-1" onclick="goStep(1)">
-      <div class="step-num">1</div><span class="step-label">Tema y audiencia</span>
-    </div>
+    <div class="step-item active" id="step-1" onclick="goStep(1)"><div class="step-num">1</div><span class="step-label">Tema y audiencia</span></div>
     <div class="step-divider"></div>
-    <div class="step-item" id="step-2" onclick="goStep(2)">
-      <div class="step-num">2</div><span class="step-label">Formato</span>
-    </div>
+    <div class="step-item" id="step-2" onclick="goStep(2)"><div class="step-num">2</div><span class="step-label">Formato</span></div>
     <div class="step-divider"></div>
-    <div class="step-item" id="step-3" onclick="goStep(3)">
-      <div class="step-num">3</div><span class="step-label">Resultado</span>
-    </div>
+    <div class="step-item" id="step-3" onclick="goStep(3)"><div class="step-num">3</div><span class="step-label">Resultado</span></div>
   </div>
 
-  <!-- PANEL 1 -->
   <div class="panel active" id="panel-1">
     <h1 class="panel-title">¿Sobre qué vas a <em>enseñar</em>?</h1>
     <p class="panel-sub">Describí tu conocimiento y a quién va dirigido.</p>
-    <div class="field-group full"><div class="field">
-      <label>Tema del curso *</label>
-      <input type="text" id="topic" placeholder="Ej: Marketing en Instagram para negocios gastronómicos">
-    </div></div>
-    <div class="field-group full"><div class="field">
-      <label>¿A quién está dirigido? *</label>
-      <input type="text" id="audience" placeholder="Ej: Dueños de restaurantes que quieren atraer más clientes">
-    </div></div>
-    <div class="field-group full"><div class="field">
-      <label>Problema que resuelve</label>
-      <textarea id="problem" placeholder="Ej: No saben crear contenido que atraiga clientes, no tienen tiempo, no entienden el algoritmo"></textarea>
-    </div></div>
-    <div class="field-group full"><div class="field">
-      <label>Tu credencial o experiencia</label>
-      <input type="text" id="credential" placeholder="Ej: 5 años manejando redes para 30+ restaurantes en CABA">
-    </div></div>
-    <div class="btn-row"><button class="btn btn-primary" onclick="goStep(2)">Continuar →</button></div>
+    <div class="field-group full"><div class="field"><label>Tema del curso *</label><input type="text" id="topic" placeholder="Ej: Marketing en Instagram para negocios gastronómicos"></div></div>
+    <div class="field-group full"><div class="field"><label>¿A quién está dirigido? *</label><input type="text" id="audience" placeholder="Ej: Dueños de restaurantes que quieren atraer más clientes"></div></div>
+    <div class="field-group full"><div class="field"><label>Problema que resuelve</label><textarea id="problem" placeholder="Ej: No saben crear contenido que atraiga clientes"></textarea></div></div>
+    <div class="field-group full"><div class="field"><label>Tu credencial o experiencia</label><input type="text" id="credential" placeholder="Ej: 5 años manejando redes para 30+ restaurantes en CABA"></div></div>
+    <div class="btn-row"><button class="btn btn-primary" id="btn-continuar" onclick="goStep(2)">Continuar →</button></div>
   </div>
 
-  <!-- PANEL 2 -->
   <div class="panel" id="panel-2">
     <h1 class="panel-title">Definí el <em>formato</em></h1>
     <p class="panel-sub">Estos parámetros dan forma a toda la estructura.</p>
     <div class="field-group thirds">
-      <div class="field"><label>Nivel</label>
-        <select id="level"><option value="principiante">Principiante</option><option value="intermedio" selected>Intermedio</option><option value="avanzado">Avanzado</option></select>
-      </div>
-      <div class="field"><label>Duración</label>
-        <select id="duration"><option value="2 horas">2 horas (intensivo)</option><option value="4-6 horas" selected>4–6 horas</option><option value="8-12 horas">8–12 horas</option><option value="20+ horas">20+ horas</option></select>
-      </div>
-      <div class="field"><label>Módulos</label>
-        <select id="modules"><option value="3">3</option><option value="5" selected>5</option><option value="7">7</option><option value="10">10</option></select>
-      </div>
+      <div class="field"><label>Nivel</label><select id="level"><option value="principiante">Principiante</option><option value="intermedio" selected>Intermedio</option><option value="avanzado">Avanzado</option></select></div>
+      <div class="field"><label>Duración</label><select id="duration"><option value="2 horas">2 horas</option><option value="4-6 horas" selected>4–6 horas</option><option value="8-12 horas">8–12 horas</option><option value="20+ horas">20+ horas</option></select></div>
+      <div class="field"><label>Módulos</label><select id="modules"><option value="3">3</option><option value="5" selected>5</option><option value="7">7</option><option value="10">10</option></select></div>
     </div>
     <div class="sec-div"></div>
-    <div class="field-group full"><div class="field">
-      <label>Extras a incluir</label>
+    <div class="field-group full"><div class="field"><label>Extras a incluir</label>
       <div class="tags-row" id="extras-tags">
         <span class="tag selected" data-val="ejercicios prácticos">Ejercicios prácticos</span>
         <span class="tag selected" data-val="recursos descargables">Recursos descargables</span>
@@ -229,8 +147,7 @@ select option{background:var(--bg3);}
         <span class="tag" data-val="preguntas frecuentes del alumno">FAQ</span>
       </div>
     </div></div>
-    <div class="field-group full"><div class="field">
-      <label>Tono de enseñanza</label>
+    <div class="field-group full"><div class="field"><label>Tono de enseñanza</label>
       <div class="tags-row" id="tone-tags">
         <span class="tag selected" data-val="práctico y directo al punto">Práctico y directo</span>
         <span class="tag" data-val="inspiracional y motivador">Inspiracional</span>
@@ -239,27 +156,18 @@ select option{background:var(--bg3);}
         <span class="tag" data-val="basado en casos reales">Casos reales</span>
       </div>
     </div></div>
-    <div class="field-group full"><div class="field">
-      <label>Notas especiales</label>
-      <input type="text" id="notes" placeholder="Ej: Incluir ejemplos argentinos. Evitar tecnicismos.">
-    </div></div>
+    <div class="field-group full"><div class="field"><label>Notas especiales</label><input type="text" id="notes" placeholder="Ej: Incluir ejemplos argentinos. Evitar tecnicismos."></div></div>
     <div class="btn-row">
       <button class="btn btn-ghost" onclick="goStep(1)">← Volver</button>
-      <button class="gen-btn" id="gen-btn" onclick="generateCourse()" style="margin-top:0;flex:1">
-        ✦ Generar curso completo con IA
-      </button>
+      <button class="gen-btn" id="gen-btn" onclick="generateCourse()" style="margin-top:0;flex:1">✦ Generar curso completo con IA</button>
     </div>
     <div class="err" id="error-msg"></div>
   </div>
 
-  <!-- PANEL 3 -->
   <div class="panel" id="panel-3">
     <h1 class="panel-title">Tu curso está <em>listo</em></h1>
-    <p class="panel-sub">Revisá la estructura, exportá a PDF, publicá en Hotmart o generá tu link de pago con Mercado Pago.</p>
-    <div class="loading-state" id="loading-state">
-      <div class="loader"></div>
-      <p class="loading-msg" id="loading-msg">Diseñando la estructura del curso...</p>
-    </div>
+    <p class="panel-sub">Revisá la estructura, exportá a PDF o generá tu link de pago.</p>
+    <div class="loading-state" id="loading-state"><div class="loader"></div><p class="loading-msg" id="loading-msg">Diseñando la estructura del curso...</p></div>
     <div class="course-output" id="course-output"></div>
   </div>
 </main>
@@ -269,562 +177,213 @@ let selectedExtras = ['ejercicios prácticos','recursos descargables'];
 let selectedTone = ['práctico y directo al punto'];
 let courseData = null;
 
-document.querySelectorAll('#extras-tags .tag').forEach(t => t.addEventListener('click',()=>{
-  t.classList.toggle('selected');
-  const v=t.dataset.val;
-  if(t.classList.contains('selected')){if(!selectedExtras.includes(v))selectedExtras.push(v);}
-  else selectedExtras=selectedExtras.filter(x=>x!==v);
-}));
-document.querySelectorAll('#tone-tags .tag').forEach(t => t.addEventListener('click',()=>{
-  document.querySelectorAll('#tone-tags .tag').forEach(x=>x.classList.remove('selected'));
-  t.classList.add('selected');selectedTone=[t.dataset.val];
-}));
-
-function toast(msg,icon='✓',ms=3000){
-  document.getElementById('ti').textContent=icon;
-  document.getElementById('tm').textContent=msg;
-  const el=document.getElementById('toast');
-  el.classList.add('visible');
-  setTimeout(()=>el.classList.remove('visible'),ms);
-}
-
-(n){
-  if(n===2){
-    const t=document.getElementById('topic').value.trim();
-    if(!t){document.getElementById('topic').style.borderColor='rgba(240,80,80,.5)';setTimeout(()=>document.getElementById('topic').style.borderColor='',2000);return;}
-  }
-  [1,2,3].forEach(i=>{
-    document.getElementById(`panel-${i}`).classList.remove('active');
-    document.getElementById(`step-${i}`).classList.remove('active','done');
+document.querySelectorAll('#extras-tags .tag').forEach(function(t) {
+  t.addEventListener('click', function() {
+    t.classList.toggle('selected');
+    var v = t.dataset.val;
+    if (t.classList.contains('selected')) {
+      if (selectedExtras.indexOf(v) === -1) selectedExtras.push(v);
+    } else {
+      selectedExtras = selectedExtras.filter(function(x) { return x !== v; });
+    }
   });
-  document.getElementById(`panel-${n}`).classList.add('active');
-  document.getElementById(`step-${n}`).classList.add('active');
-  for(let i=1;i<n;i++)document.getElementById(`step-${i}`).classList.add('done');
-  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+document.querySelectorAll('#tone-tags .tag').forEach(function(t) {
+  t.addEventListener('click', function() {
+    document.querySelectorAll('#tone-tags .tag').forEach(function(x) { x.classList.remove('selected'); });
+    t.classList.add('selected');
+    selectedTone = [t.dataset.val];
+  });
+});
+
+function toast(msg, icon, ms) {
+  icon = icon || '✓'; ms = ms || 3000;
+  document.getElementById('ti').textContent = icon;
+  document.getElementById('tm').textContent = msg;
+  var el = document.getElementById('toast');
+  el.classList.add('visible');
+  setTimeout(function() { el.classList.remove('visible'); }, ms);
 }
-function resetAll(){
-  ['topic','audience','problem','credential','notes'].forEach(id=>document.getElementById(id).value='');
-  courseData=null;
-  document.getElementById('course-output').innerHTML='';
+
+function goStep(n) {
+  if (n === 2) {
+    var topicEl = document.getElementById('topic');
+    var t = topicEl ? topicEl.value.trim() : '';
+    if (!t) {
+      topicEl.style.borderColor = 'rgba(240,80,80,.5)';
+      setTimeout(function() { topicEl.style.borderColor = ''; }, 2000);
+      return;
+    }
+  }
+  for (var i = 1; i <= 3; i++) {
+    document.getElementById('panel-' + i).classList.remove('active');
+    document.getElementById('step-' + i).classList.remove('active', 'done');
+  }
+  document.getElementById('panel-' + n).classList.add('active');
+  document.getElementById('step-' + n).classList.add('active');
+  for (var j = 1; j < n; j++) {
+    document.getElementById('step-' + j).classList.add('done');
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetAll() {
+  ['topic','audience','problem','credential','notes'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  courseData = null;
+  document.getElementById('course-output').innerHTML = '';
   document.getElementById('course-output').classList.remove('visible');
   document.getElementById('loading-state').classList.remove('visible');
-  document.getElementById('gen-btn').disabled=false;
+  document.getElementById('gen-btn').disabled = false;
   goStep(1);
 }
 
-const loadMsgs=['Diseñando la estructura...','Creando módulos y clases...','Generando ejercicios...','Escribiendo materiales de venta...','Puliendo los detalles...'];
+var loadMsgs = ['Diseñando la estructura...','Creando módulos y clases...','Generando ejercicios...','Escribiendo materiales de venta...','Puliendo los detalles...'];
 
-async function generateCourse(){
-  const topic=document.getElementById('topic').value.trim();
-  const audience=document.getElementById('audience').value.trim();
-  if(!topic||!audience)return;
-  document.getElementById('gen-btn').disabled=true;
+async function generateCourse() {
+  var topic = document.getElementById('topic').value.trim();
+  var audience = document.getElementById('audience').value.trim();
+  if (!topic || !audience) return;
+
+  document.getElementById('gen-btn').disabled = true;
   document.getElementById('error-msg').classList.remove('visible');
   goStep(3);
   document.getElementById('loading-state').classList.add('visible');
   document.getElementById('course-output').classList.remove('visible');
-  let mi=0;
-  const iv=setInterval(()=>{mi=(mi+1)%loadMsgs.length;document.getElementById('loading-msg').textContent=loadMsgs[mi];},2200);
-  const prompt=`Eres un experto en diseño instruccional. Crea un curso online en español con estos parámetros:
-TEMA: ${topic}
-AUDIENCIA: ${audience}
-${document.getElementById('problem').value?'PROBLEMA: '+document.getElementById('problem').value:''}
-${document.getElementById('credential').value?'CREDENCIAL: '+document.getElementById('credential').value:''}
-NIVEL: ${document.getElementById('level').value}
-DURACIÓN: ${document.getElementById('duration').value}
-MÓDULOS: ${document.getElementById('modules').value}
-TONO: ${selectedTone[0]}
-EXTRAS: ${selectedExtras.join(', ')}
-${document.getElementById('notes').value?'NOTAS: '+document.getElementById('notes').value:''}
-Responde ÚNICAMENTE con JSON válido sin markdown:
-{"titulo":"","subtitulo":"","nivel":"","duracion":"","precio_sugerido":"","promesa":"","para_quien":[],"no_para_quien":[],"modulos":[{"numero":1,"titulo":"","objetivo":"","duracion":"","clases":[{"titulo":"","descripcion":"","tipo":"video"}]}],"ejercicios":[],"recursos":[],"proyecto_final":"","faq":[{"pregunta":"","respuesta":""}],"email_venta":"","landing_copy":"","posts_ig":[]}`;
-  try{
-    const r=await fetch('/api/generate-course',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('ca-token')},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,messages:[{role:'user',content:prompt}]})});
-    if(!r.ok)throw new Error(`API ${r.status}`);
-    const d=await r.json();
-    ;const d=await r.json();
-    if(d.error)throw new Error(d.error);
-    if(!d.content||!d.content[0])throw new Error(JSON.stringify(d));
-    const raw=d.content[0].text.trim().replace(/^```json\n?/,'').replace(/\n?```$/,'').trim();
-    courseData=JSON.parse(raw);
-    courseData=JSON.parse(raw);
+
+  var mi = 0;
+  var iv = setInterval(function() {
+    mi = (mi + 1) % loadMsgs.length;
+    document.getElementById('loading-msg').textContent = loadMsgs[mi];
+  }, 2200);
+
+  var problem = document.getElementById('problem').value;
+  var credential = document.getElementById('credential').value;
+  var level = document.getElementById('level').value;
+  var duration = document.getElementById('duration').value;
+  var modules = document.getElementById('modules').value;
+  var notes = document.getElementById('notes').value;
+
+  var prompt = 'Eres un experto en diseño instruccional. Crea un curso online en español con estos parámetros:\n';
+  prompt += 'TEMA: ' + topic + '\n';
+  prompt += 'AUDIENCIA: ' + audience + '\n';
+  if (problem) prompt += 'PROBLEMA: ' + problem + '\n';
+  if (credential) prompt += 'CREDENCIAL: ' + credential + '\n';
+  prompt += 'NIVEL: ' + level + '\n';
+  prompt += 'DURACIÓN: ' + duration + '\n';
+  prompt += 'MÓDULOS: ' + modules + '\n';
+  prompt += 'TONO: ' + selectedTone[0] + '\n';
+  prompt += 'EXTRAS: ' + selectedExtras.join(', ') + '\n';
+  if (notes) prompt += 'NOTAS: ' + notes + '\n';
+  prompt += 'Responde ÚNICAMENTE con JSON válido sin markdown:\n';
+  prompt += '{"titulo":"","subtitulo":"","nivel":"","duracion":"","precio_sugerido":"","promesa":"","para_quien":[],"no_para_quien":[],"modulos":[{"numero":1,"titulo":"","objetivo":"","duracion":"","clases":[{"titulo":"","descripcion":"","tipo":"video"}]}],"ejercicios":[],"recursos":[],"proyecto_final":"","faq":[{"pregunta":"","respuesta":""}],"email_venta":"","landing_copy":"","posts_ig":[]}';
+
+  try {
+    var r = await fetch('/api/generate-course', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    if (!r.ok) throw new Error('API ' + r.status);
+    var d = await r.json();
+    if (d.error) throw new Error(typeof d.error === 'string' ? d.error : JSON.stringify(d.error));
+    if (!d.content || !d.content[0]) throw new Error('Respuesta inesperada: ' + JSON.stringify(d));
+    var raw = d.content[0].text.trim().replace(/^```json\n?/, '').replace(/\n?```$/, '').trim();
+    courseData = JSON.parse(raw);
     clearInterval(iv);
     document.getElementById('loading-state').classList.remove('visible');
     renderCourse(courseData);
-  }catch(e){
+  } catch(e) {
     clearInterval(iv);
     document.getElementById('loading-state').classList.remove('visible');
     goStep(2);
-    document.getElementById('gen-btn').disabled=false;
-    const el=document.getElementById('error-msg');
-    el.textContent='Error: '+e.message;el.classList.add('visible');
+    document.getElementById('gen-btn').disabled = false;
+    var el = document.getElementById('error-msg');
+    el.textContent = 'Error: ' + e.message;
+    el.classList.add('visible');
   }
 }
 
-function renderCourse(c){
-  const imap={video:'▶',ejercicio:'✏',recurso:'↓',evaluacion:'◉'};
-  const modH=(c.modulos||[]).map((m,i)=>`
-    <div class="module-card">
-      <div class="module-header" onclick="toggleMod(${i})">
-        <div class="module-num">${m.numero||i+1}</div>
-        <div style="flex:1"><div class="module-title-text">${m.titulo}</div><div style="font-size:11px;color:var(--text3);margin-top:1px">${m.objetivo||''}</div></div>
-        <span class="module-dur">${m.duracion||''}</span>
-        <span style="color:var(--text3);font-size:16px;margin-left:8px" id="arr-${i}">›</span>
-      </div>
-      <div class="module-body" id="mb-${i}">
-        ${(m.clases||[]).map(cl=>`<div class="lesson-row"><div class="lesson-icon">${imap[cl.tipo]||'▶'}</div><div><div class="lesson-t">${cl.titulo}</div><div class="lesson-d">${cl.descripcion||''}</div></div></div>`).join('')}
-      </div>
-    </div>`).join('');
+function renderCourse(c) {
+  var imap = { video:'▶', ejercicio:'✏', recurso:'↓', evaluacion:'◉' };
+  var modH = (c.modulos || []).map(function(m, i) {
+    var clases = (m.clases || []).map(function(cl) {
+      return '<div class="lesson-row"><div class="lesson-icon">' + (imap[cl.tipo] || '▶') + '</div><div><div class="lesson-t">' + cl.titulo + '</div><div class="lesson-d">' + (cl.descripcion || '') + '</div></div></div>';
+    }).join('');
+    return '<div class="module-card"><div class="module-header" onclick="toggleMod(' + i + ')"><div class="module-num">' + (m.numero || i+1) + '</div><div style="flex:1"><div class="module-title-text">' + m.titulo + '</div><div style="font-size:11px;color:var(--text3);margin-top:1px">' + (m.objetivo || '') + '</div></div><span class="module-dur">' + (m.duracion || '') + '</span><span style="color:var(--text3);font-size:16px;margin-left:8px" id="arr-' + i + '">›</span></div><div class="module-body" id="mb-' + i + '">' + clases + '</div></div>';
+  }).join('');
 
-  const ex=[];
-  if(c.ejercicios?.length)ex.push(`<div class="extra-card"><div class="extra-title">✏ Ejercicios</div><ul class="extra-list">${c.ejercicios.map(e=>`<li>${e}</li>`).join('')}</ul></div>`);
-  if(c.recursos?.length)ex.push(`<div class="extra-card"><div class="extra-title">↓ Recursos</div><ul class="extra-list">${c.recursos.map(r=>`<li>${r}</li>`).join('')}</ul></div>`);
-  if(c.faq?.length)ex.push(`<div class="extra-card" style="grid-column:1/-1"><div class="extra-title">? FAQ</div><ul class="extra-list">${c.faq.map(f=>`<li><span><b>${f.pregunta}</b><br>${f.respuesta}</span></li>`).join('')}</ul></div>`);
+  var ex = [];
+  if (c.ejercicios && c.ejercicios.length) ex.push('<div class="extra-card"><div class="extra-title">✏ Ejercicios</div><ul class="extra-list">' + c.ejercicios.map(function(e) { return '<li>' + e + '</li>'; }).join('') + '</ul></div>');
+  if (c.recursos && c.recursos.length) ex.push('<div class="extra-card"><div class="extra-title">↓ Recursos</div><ul class="extra-list">' + c.recursos.map(function(r) { return '<li>' + r + '</li>'; }).join('') + '</ul></div>');
+  if (c.faq && c.faq.length) ex.push('<div class="extra-card" style="grid-column:1/-1"><div class="extra-title">? FAQ</div><ul class="extra-list">' + c.faq.map(function(f) { return '<li><span><b>' + f.pregunta + '</b><br>' + f.respuesta + '</span></li>'; }).join('') + '</ul></div>');
 
-  const sal=[];
-  if(c.email_venta)sal.push(`<div class="sales-section"><div class="sales-title">📧 Email de lanzamiento</div><div class="sales-copy" style="white-space:pre-line;font-size:12px">${c.email_venta}</div></div>`);
-  if(c.landing_copy)sal.push(`<div class="sales-section"><div class="sales-title">🖥 Landing copy</div><div class="sales-copy" style="white-space:pre-line;font-size:12px">${c.landing_copy}</div></div>`);
-  if(c.posts_ig?.length)sal.push(`<div class="sales-section"><div class="sales-title">📱 Posts Instagram</div>${c.posts_ig.map((p,i)=>`<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)"><div style="font-size:10px;color:var(--text3);margin-bottom:3px">Post ${i+1}</div><div class="sales-copy" style="font-size:12px;white-space:pre-line">${p}</div></div>`).join('')}</div>`);
+  var sal = [];
+  if (c.email_venta) sal.push('<div class="sales-section"><div class="sales-title">📧 Email de lanzamiento</div><div class="sales-copy" style="white-space:pre-line;font-size:12px">' + c.email_venta + '</div></div>');
+  if (c.landing_copy) sal.push('<div class="sales-section"><div class="sales-title">🖥 Landing copy</div><div class="sales-copy" style="white-space:pre-line;font-size:12px">' + c.landing_copy + '</div></div>');
+  if (c.posts_ig && c.posts_ig.length) sal.push('<div class="sales-section"><div class="sales-title">📱 Posts Instagram</div>' + c.posts_ig.map(function(p, i) { return '<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)"><div style="font-size:10px;color:var(--text3);margin-bottom:3px">Post ' + (i+1) + '</div><div class="sales-copy" style="font-size:12px;white-space:pre-line">' + p + '</div></div>'; }).join('') + '</div>');
 
-  document.getElementById('course-output').innerHTML=`
-    <div class="output-header">
-      <div class="output-title">${c.titulo||'Curso generado'}</div>
-      <div style="font-size:13px;color:var(--text2)">${c.subtitulo||''}</div>
-      <div class="output-meta">
-        <span class="meta-chip">📚 ${c.nivel||''}</span>
-        <span class="meta-chip">⏱ ${c.duracion||''}</span>
-        <span class="meta-chip">💰 ${c.precio_sugerido||''}</span>
-        <span class="meta-chip">✦ ${(c.modulos||[]).length} módulos</span>
-      </div>
-      ${c.promesa?`<div style="margin-top:.9rem;padding:10px;background:rgba(200,240,96,0.05);border:1px solid rgba(200,240,96,0.12);border-radius:7px;font-size:12px;color:var(--text2)">${c.promesa}</div>`:''}
-    </div>
+  var pq = c.para_quien && c.para_quien.length ? '<div class="extra-card"><div class="extra-title">✓ Para quién</div><ul class="extra-list">' + c.para_quien.map(function(p) { return '<li>' + p + '</li>'; }).join('') + '</ul></div>' : '';
+  var npq = c.no_para_quien && c.no_para_quien.length ? '<div class="extra-card"><div class="extra-title">✗ No es para</div><ul class="extra-list">' + c.no_para_quien.map(function(p) { return '<li>' + p + '</li>'; }).join('') + '</ul></div>' : '';
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:.9rem">
-      ${c.para_quien?.length?`<div class="extra-card"><div class="extra-title">✓ Para quién</div><ul class="extra-list">${c.para_quien.map(p=>`<li>${p}</li>`).join('')}</ul></div>`:''}
-      ${c.no_para_quien?.length?`<div class="extra-card"><div class="extra-title">✗ No es para</div><ul class="extra-list">${c.no_para_quien.map(p=>`<li>${p}</li>`).join('')}</ul></div>`:''}
-    </div>
-
-    <div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Estructura del curso</div>
-    ${modH}
-    ${c.proyecto_final?`<div class="sales-section"><div class="sales-title">🏆 Proyecto final</div><div class="sales-copy" style="font-size:12px">${c.proyecto_final}</div></div>`:''}
-    ${ex.length?`<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales</div><div class="extras-grid">${ex.join('')}</div>`:''}
-    ${sal.length?`<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales de venta</div>${sal.join('')}`:''}
-
-    <div class="action-bar">
-      <button class="btn btn-primary" onclick="exportPDF()">↓ PDF</button>
-      <button class="btn btn-mp" onclick="toggleMP()">💳 Mercado Pago</button>
-      <button class="btn btn-amber" onclick="toggleHotmart()">🔥 Hotmart</button>
-      <button class="btn btn-ghost" onclick="copyCourse()">Copiar</button>
-      <button class="btn btn-ghost" onclick="resetAll()">Nuevo</button>
-    </div>
-
-    <!-- ═══ MERCADO PAGO PANEL ═══════════════════════════════════════════ -->
-    <div class="mp-panel" id="mp-panel">
-      <div class="mp-header">
-        <div class="mp-logo">💳</div>
-        <div><div class="mp-title">Mercado Pago</div><div class="mp-sub">Generá tu link de pago y empezá a cobrar</div></div>
-      </div>
-
-      <div class="notice">
-        💡 Para usar esta integración necesitás un servidor corriendo <b>server.js</b>. Sin servidor, usá el modo <b>Link directo</b> que no requiere backend.
-      </div>
-
-      <div class="mp-tabs">
-        <button class="mp-tab active" onclick="mpTab('config')">⚙ Configurar</button>
-        <button class="mp-tab" onclick="mpTab('link')">🔗 Link directo</button>
-        <button class="mp-tab" onclick="mpTab('status')">📊 Estado pagos</button>
-      </div>
-
-      <!-- TAB: Configurar -->
-      <div class="mp-tab-content active" id="mpt-config">
-        <div class="field-group">
-          <div class="field">
-            <label>Precio de venta</label>
-            <input type="number" id="mp-price" placeholder="Ej: 15000" min="1">
-          </div>
-          <div class="field">
-            <label>Moneda</label>
-            <select id="mp-currency">
-              <option value="ARS" selected>ARS — Pesos argentinos</option>
-              <option value="USD">USD — Dólares</option>
-              <option value="BRL">BRL — Reales</option>
-            </select>
-          </div>
-        </div>
-        <div class="field-group full">
-          <div class="field">
-            <label>URL de tu servidor (con server.js corriendo)</label>
-            <input type="text" id="mp-server" value="http://localhost:3000" placeholder="http://localhost:3000">
-          </div>
-        </div>
-        <div class="price-preview">
-          <div>
-            <div style="font-size:11px;color:var(--text2);margin-bottom:3px">Precio final del curso</div>
-            <div class="price-big" id="price-display">$0</div>
-          </div>
-          <div class="price-note">
-            <div>Mercado Pago cobra ~3.99%</div>
-            <div id="mp-net-display" style="color:var(--green);margin-top:3px">Recibís: $0</div>
-          </div>
-        </div>
-        <div class="btn-row" style="margin-top:1rem">
-          <button class="btn btn-mp" id="mp-gen-btn" onclick="createMPPayment()" style="flex:1">💳 Generar link de pago</button>
-        </div>
-        <div id="mp-result" style="display:none;margin-top:1rem">
-          <div class="pay-link-box">
-            <div class="mp-logo" style="width:28px;height:28px;font-size:13px">💳</div>
-            <a class="pay-link-url" id="mp-pay-url" href="#" target="_blank">—</a>
-            <button class="btn btn-ghost" style="padding:5px 11px;font-size:11px" onclick="copyMPLink()">Copiar</button>
-          </div>
-          <div style="font-size:11px;color:var(--text2);margin-top:6px;padding:0 4px">
-            🧪 Sandbox: <a id="mp-sandbox-url" href="#" target="_blank" style="color:var(--mp)">link de prueba</a> — usalo para testear sin cobrar dinero real
-          </div>
-        </div>
-        <div id="mp-steps" style="display:none;margin-top:1rem" class="steps-list">
-          <div class="mp-step" id="mps-1"><div class="mp-step-n" id="mpn-1">1</div><div class="mp-step-info"><div class="mp-step-t">Conectando con servidor</div><div class="mp-step-d">Verificando que server.js esté corriendo</div></div></div>
-          <div class="mp-step" id="mps-2"><div class="mp-step-n" id="mpn-2">2</div><div class="mp-step-info"><div class="mp-step-t">Creando preferencia</div><div class="mp-step-d">Registrando el producto en Mercado Pago</div></div></div>
-          <div class="mp-step" id="mps-3"><div class="mp-step-n" id="mpn-3">3</div><div class="mp-step-info"><div class="mp-step-t">Generando link de pago</div><div class="mp-step-d">Link listo para compartir con tus alumnos</div></div></div>
-        </div>
-        <div id="mp-err" class="err"></div>
-      </div>
-
-      <!-- TAB: Link directo (sin backend) -->
-      <div class="mp-tab-content" id="mpt-link">
-        <div style="font-size:12px;color:var(--text2);margin-bottom:1rem;line-height:1.6">
-          Sin servidor, podés crear el link de pago directamente desde <b style="color:var(--text)">mercadopago.com.ar</b>. Seguí estos pasos:
-        </div>
-        <div class="steps-list">
-          <div class="mp-step">
-            <div class="mp-step-n done">1</div>
-            <div class="mp-step-info">
-              <div class="mp-step-t">Entrá a tu cuenta de Mercado Pago</div>
-              <div class="mp-step-d"><a href="https://www.mercadopago.com.ar/cobros/link-pago" target="_blank" style="color:var(--mp)">mercadopago.com.ar/cobros/link-pago</a></div>
-            </div>
-          </div>
-          <div class="mp-step">
-            <div class="mp-step-n done">2</div>
-            <div class="mp-step-info">
-              <div class="mp-step-t">Creá un link de cobro</div>
-              <div class="mp-step-d">Usá el título y precio del curso generado. Podés agregar imagen y descripción.</div>
-            </div>
-          </div>
-          <div class="mp-step">
-            <div class="mp-step-n done">3</div>
-            <div class="mp-step-info">
-              <div class="mp-step-t">Copiá los datos del curso para pegar</div>
-              <div class="mp-step-d">Usá el botón de abajo para copiar título, precio sugerido y descripción.</div>
-            </div>
-          </div>
-          <div class="mp-step">
-            <div class="mp-step-n done">4</div>
-            <div class="mp-step-info">
-              <div class="mp-step-t">Compartí el link</div>
-              <div class="mp-step-d">En redes, WhatsApp o tu landing page. Mercado Pago procesa el pago automáticamente.</div>
-            </div>
-          </div>
-        </div>
-        <div style="margin-top:1rem;display:flex;gap:9px;flex-wrap:wrap">
-          <button class="btn btn-mp" onclick="copyMPData()">Copiar datos del curso</button>
-          <a href="https://www.mercadopago.com.ar/cobros/link-pago" target="_blank" class="btn btn-ghost" style="text-decoration:none">Abrir Mercado Pago ↗</a>
-        </div>
-        <div id="mp-copied-data" style="display:none;margin-top:.8rem;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 13px;font-size:12px;color:var(--text2);white-space:pre-line;line-height:1.6"></div>
-      </div>
-
-      <!-- TAB: Estado de pagos -->
-      <div class="mp-tab-content" id="mpt-status">
-        <div style="font-size:12px;color:var(--text2);margin-bottom:.8rem">Ingresá el ID de un pago para ver su estado en tiempo real.</div>
-        <div class="field-group full"><div class="field">
-          <label>ID del pago (de tu panel de Mercado Pago)</label>
-          <input type="text" id="mp-payment-id" placeholder="Ej: 1234567890">
-        </div></div>
-        <div class="field-group full"><div class="field">
-          <label>URL de tu servidor</label>
-          <input type="text" id="mp-server-status" value="http://localhost:3000">
-        </div></div>
-        <div class="btn-row" style="margin-top:.5rem">
-          <button class="btn btn-mp" onclick="checkPaymentStatus()">Verificar estado</button>
-        </div>
-        <div id="mp-status-result" style="display:none;margin-top:1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.7rem">
-            <div style="font-size:12px;font-weight:500">Pago <span id="mps-id">—</span></div>
-            <div id="mps-chip"></div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <div><div style="font-size:10px;color:var(--text3)">MONTO</div><div style="font-size:13px;font-weight:500" id="mps-amount">—</div></div>
-            <div><div style="font-size:10px;color:var(--text3)">COMPRADOR</div><div style="font-size:13px" id="mps-payer">—</div></div>
-            <div><div style="font-size:10px;color:var(--text3)">ESTADO</div><div style="font-size:13px" id="mps-status">—</div></div>
-            <div><div style="font-size:10px;color:var(--text3)">APROBADO</div><div style="font-size:13px" id="mps-date">—</div></div>
-          </div>
-        </div>
-        <div id="mp-status-err" class="err"></div>
-      </div>
-    </div>
-
-    <!-- ═══ HOTMART PANEL ════════════════════════════════════════════════ -->
-    <div class="hotmart-panel" id="hotmart-panel">
-      <div class="mp-header">
-        <div class="mp-logo" style="background:rgba(240,168,74,0.1)">🔥</div>
-        <div><div class="mp-title">Hotmart</div><div class="mp-sub">Publicá el curso en la plataforma más usada de Latam</div></div>
-      </div>
-      <div class="field-group full"><div class="field">
-        <label>Bearer Token de Hotmart</label>
-        <input type="password" id="hotmart-token" placeholder="Token de tu cuenta de desarrollador en Hotmart">
-      </div></div>
-      <div class="field-group">
-        <div class="field"><label>Precio</label><input type="text" id="hotmart-price" placeholder="Ej: 97.00"></div>
-        <div class="field"><label>Moneda</label>
-          <select id="hotmart-currency"><option value="USD">USD</option><option value="BRL">BRL</option><option value="ARS">ARS</option></select>
-        </div>
-      </div>
-      <div id="hotmart-status-row" style="display:none" class="status-row"></div>
-      <div class="btn-row" style="margin-top:.8rem">
-        <button class="btn btn-amber" id="hotmart-btn" onclick="publishHotmart()" style="flex:1">🔥 Publicar en Hotmart</button>
-        <button class="btn btn-ghost" onclick="showHotmartManual()">Guía manual</button>
-      </div>
-      <div id="hotmart-result-box" style="display:none;margin-top:.9rem;padding:10px;background:rgba(93,232,106,0.05);border:1px solid rgba(93,232,106,0.18);border-radius:7px">
-        <div style="font-size:11px;color:var(--green);font-weight:500;margin-bottom:4px">✓ Publicado</div>
-        <div style="font-size:12px;color:var(--text2)">Link: <a id="hotmart-link-out" href="#" target="_blank" style="color:var(--accent)">—</a></div>
-      </div>
-      <div id="hotmart-manual-box" style="display:none;margin-top:.9rem">
-        <ol style="font-size:12px;color:var(--text2);padding-left:16px;line-height:2.1">
-          <li>Entrá a <a href="https://app.hotmart.com" target="_blank" style="color:var(--accent)">app.hotmart.com</a> y creá cuenta gratuita</li>
-          <li>Clic en "Crear producto" → "Curso online"</li>
-          <li>Pegá el título y descripción del curso</li>
-          <li>En "Módulos", agregá la estructura generada</li>
-          <li>En "Página de ventas", pegá el landing copy</li>
-          <li>Configurá el precio y publicá</li>
-        </ol>
-        <button class="btn btn-ghost" style="margin-top:7px;font-size:11px" onclick="copyHotmartData()">Copiar datos para Hotmart</button>
-      </div>
-    </div>
-  `;
+  document.getElementById('course-output').innerHTML =
+    '<div class="output-header"><div class="output-title">' + (c.titulo || 'Curso generado') + '</div><div style="font-size:13px;color:var(--text2)">' + (c.subtitulo || '') + '</div><div class="output-meta"><span class="meta-chip">📚 ' + (c.nivel || '') + '</span><span class="meta-chip">⏱ ' + (c.duracion || '') + '</span><span class="meta-chip">💰 ' + (c.precio_sugerido || '') + '</span><span class="meta-chip">✦ ' + (c.modulos || []).length + ' módulos</span></div>' + (c.promesa ? '<div style="margin-top:.9rem;padding:10px;background:rgba(200,240,96,0.05);border:1px solid rgba(200,240,96,0.12);border-radius:7px;font-size:12px;color:var(--text2)">' + c.promesa + '</div>' : '') + '</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:.9rem">' + pq + npq + '</div>' +
+    '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Estructura del curso</div>' +
+    modH +
+    (c.proyecto_final ? '<div class="sales-section"><div class="sales-title">🏆 Proyecto final</div><div class="sales-copy" style="font-size:12px">' + c.proyecto_final + '</div></div>' : '') +
+    (ex.length ? '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales</div><div class="extras-grid">' + ex.join('') + '</div>' : '') +
+    (sal.length ? '<div style="font-size:10px;font-weight:500;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin:1.2rem 0 8px">Materiales de venta</div>' + sal.join('') : '') +
+    '<div class="action-bar"><button class="btn btn-primary" onclick="exportPDF()">↓ PDF</button><button class="btn btn-ghost" onclick="copyCourse()">Copiar</button><button class="btn btn-ghost" onclick="resetAll()">Nuevo</button></div>';
 
   document.getElementById('course-output').classList.add('visible');
-
-  // Prellenar precio sugerido en MP
-  if(c.precio_sugerido){
-    const p=c.precio_sugerido.replace(/[^0-9.]/g,'');
-    if(p){document.getElementById('mp-price').value=p;updatePricePreview();}
-  }
-  document.getElementById('mp-price')?.addEventListener('input',updatePricePreview);
-  document.getElementById('mp-currency')?.addEventListener('change',updatePricePreview);
 }
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
-function toggleMod(i){
-  const b=document.getElementById(`mb-${i}`),a=document.getElementById(`arr-${i}`),open=b.classList.contains('open');
-  b.classList.toggle('open',!open);a.textContent=open?'›':'‹';
-}
-function toggleMP(){document.getElementById('mp-panel').classList.toggle('open');if(document.getElementById('mp-panel').classList.contains('open'))document.getElementById('mp-panel').scrollIntoView({behavior:'smooth',block:'nearest'});}
-function toggleHotmart(){document.getElementById('hotmart-panel').classList.toggle('open');}
-function mpTab(t){
-  document.querySelectorAll('.mp-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.mp-tab-content').forEach(c=>c.classList.remove('active'));
-  document.getElementById(`mpt-${t}`).classList.add('active');
-  event.target.classList.add('active');
-}
-function updatePricePreview(){
-  const p=parseFloat(document.getElementById('mp-price')?.value)||0;
-  const cur=document.getElementById('mp-currency')?.value||'ARS';
-  const sym={ARS:'$',USD:'U$S',BRL:'R$'}[cur]||'$';
-  const net=p*(1-0.0399);
-  document.getElementById('price-display').textContent=`${sym} ${p.toLocaleString('es-AR')}`;
-  document.getElementById('mp-net-display').textContent=`Recibís: ${sym} ${net.toLocaleString('es-AR',{maximumFractionDigits:2})}`;
+function toggleMod(i) {
+  var b = document.getElementById('mb-' + i);
+  var a = document.getElementById('arr-' + i);
+  var open = b.classList.contains('open');
+  b.classList.toggle('open', !open);
+  a.textContent = open ? '›' : '‹';
 }
 
-// ── Crear pago vía servidor ───────────────────────────────────────────────────
-async function createMPPayment(){
-  const price=document.getElementById('mp-price')?.value;
-  const currency=document.getElementById('mp-currency')?.value||'ARS';
-  const server=(document.getElementById('mp-server')?.value||'http://localhost:3000').replace(/\/$/,'');
-  if(!price){toast('Ingresá el precio','⚠');return;}
-  const btn=document.getElementById('mp-gen-btn');
-  btn.disabled=true;
-  document.getElementById('mp-steps').style.display='block';
-  document.getElementById('mp-err').classList.remove('visible');
-  document.getElementById('mp-result').style.display='none';
-
-  const setStep=(n,st)=>{
-    const el=document.getElementById(`mpn-${n}`);
-    el.className='mp-step-n '+(st==='done'?'done':st==='active'?'active':'');
-    if(st==='done')el.textContent='✓';
-  };
-
-  try{
-    // paso 1 — health check
-    setStep(1,'active');
-    const health=await fetch(`${server}/api/health`).catch(()=>{throw new Error('No se puede conectar con el servidor. ¿Está corriendo server.js?');});
-    if(!health.ok)throw new Error('Servidor no responde');
-    const hd=await health.json();
-    if(!hd.mp)throw new Error('Falta configurar MP_ACCESS_TOKEN en el servidor (.env)');
-    setStep(1,'done');await delay(400);
-
-    // paso 2 — crear preferencia
-    setStep(2,'active');
-    const courseId='course-'+Date.now();
-    const res=await fetch(`${server}/api/create-payment`,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({courseTitle:courseData.titulo,courseSubtitle:courseData.subtitulo,price:parseFloat(price),currency,courseId})
-    });
-    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error||`Error ${res.status}`);}
-    const data=await res.json();
-    setStep(2,'done');await delay(400);
-
-    // paso 3 — mostrar link
-    setStep(3,'active');await delay(500);setStep(3,'done');
-
-    document.getElementById('mp-result').style.display='block';
-    const linkEl=document.getElementById('mp-pay-url');
-    linkEl.href=data.initPoint;linkEl.textContent=data.initPoint;
-    if(data.sandboxInitPoint){
-      const sbEl=document.getElementById('mp-sandbox-url');
-      sbEl.href=data.sandboxInitPoint;
-    }
-    toast('Link de pago generado','💳');
-
-  }catch(e){
-    const er=document.getElementById('mp-err');
-    er.textContent=e.message;er.classList.add('visible');
-  }finally{
-    btn.disabled=false;
-  }
+function copyCourse() {
+  navigator.clipboard.writeText(document.getElementById('course-output').innerText).then(function() { toast('Copiado'); });
 }
 
-async function copyMPLink(){
-  const url=document.getElementById('mp-pay-url')?.href;
-  if(url&&url!='#'){await navigator.clipboard.writeText(url);toast('Link copiado','✓');}
-}
-
-function copyMPData(){
-  if(!courseData)return;
-  const text=`TÍTULO: ${courseData.titulo}\n\nDESCRIPCIÓN:\n${courseData.promesa||courseData.subtitulo}\n\nPRECIO SUGERIDO: ${courseData.precio_sugerido}\n\nQUÉ INCLUYE:\n${(courseData.modulos||[]).map(m=>`• ${m.titulo}`).join('\n')}`;
-  navigator.clipboard.writeText(text).then(()=>{
-    document.getElementById('mp-copied-data').style.display='block';
-    document.getElementById('mp-copied-data').textContent=text;
-    toast('Datos copiados','✓');
+function exportPDF() {
+  if (!courseData) return;
+  toast('Generando PDF...', '⏳', 8000);
+  var jsPDF = window.jspdf.jsPDF;
+  var doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+  var W=210, M=18, MW=W-M*2, y=0;
+  var C = { bg:[13,13,15], acc:[200,240,96], text:[240,239,232], t2:[155,154,148], card:[20,20,23], bdr:[40,40,46] };
+  function newPage() { doc.addPage(); y=M; }
+  function checkY(n) { if (y+(n||10) > 280) newPage(); }
+  function sf(s,st,c) { doc.setFontSize(s); doc.setFont('helvetica', st||'normal'); doc.setTextColor.apply(doc, c||C.text); }
+  doc.setFillColor.apply(doc, C.bg); doc.rect(0,0,W,297,'F');
+  doc.setFillColor.apply(doc, C.acc); doc.rect(0,0,W,3,'F');
+  y=50; sf(22,'bold',C.text);
+  doc.splitTextToSize(courseData.titulo||'Curso', MW).forEach(function(l) { doc.text(l,M,y); y+=9; });
+  if (courseData.subtitulo) { y+=2; sf(11,'normal',C.t2); doc.splitTextToSize(courseData.subtitulo,MW).forEach(function(l){ doc.text(l,M,y); y+=5.5; }); }
+  doc.setFillColor.apply(doc, C.acc); doc.rect(0,294,W,3,'F');
+  newPage(); doc.setFillColor.apply(doc, C.bg); doc.rect(0,0,W,297,'F');
+  sf(8,'bold',C.acc); doc.text('ESTRUCTURA DEL CURSO',M,y); y+=7;
+  (courseData.modulos||[]).forEach(function(mod,mi) {
+    checkY(18); sf(9,'bold',C.text); doc.text((mod.numero||mi+1)+'. '+mod.titulo,M,y); y+=6;
+    (mod.clases||[]).forEach(function(cl) { checkY(6); sf(7,'normal',C.t2); doc.text('  • '+cl.titulo,M+4,y); y+=4; });
+    y+=3;
   });
-}
-
-async function checkPaymentStatus(){
-  const pid=document.getElementById('mp-payment-id')?.value.trim();
-  const server=(document.getElementById('mp-server-status')?.value||'http://localhost:3000').replace(/\/$/,'');
-  if(!pid){toast('Ingresá un ID de pago','⚠');return;}
-  document.getElementById('mp-status-err').classList.remove('visible');
-  try{
-    const r=await fetch(`${server}/api/payment-status/${pid}`);
-    if(!r.ok)throw new Error(`Error ${r.status}`);
-    const d=await r.json();
-    const statusMap={approved:{label:'Aprobado',cls:'approved'},pending:{label:'Pendiente',cls:'pending'},rejected:{label:'Rechazado',cls:'error'},in_process:{label:'En proceso',cls:'pending'}};
-    const s=statusMap[d.status]||{label:d.status,cls:'pending'};
-    document.getElementById('mp-status-result').style.display='block';
-    document.getElementById('mps-id').textContent='#'+d.id;
-    document.getElementById('mps-chip').innerHTML=`<span class="status-chip ${s.cls}"><span class="status-dot"></span>${s.label}</span>`;
-    document.getElementById('mps-amount').textContent=`${d.currency} ${(d.amount||0).toLocaleString('es-AR')}`;
-    document.getElementById('mps-payer').textContent=d.payerEmail||'—';
-    document.getElementById('mps-status').textContent=d.statusDetail||d.status;
-    document.getElementById('mps-date').textContent=d.approvedAt?new Date(d.approvedAt).toLocaleDateString('es-AR'):'—';
-  }catch(e){
-    const er=document.getElementById('mp-status-err');
-    er.textContent=e.message;er.classList.add('visible');
-  }
-}
-
-function delay(ms){return new Promise(r=>setTimeout(r,ms));}
-
-// ── Hotmart ──────────────────────────────────────────────────────────────────
-async function publishHotmart(){
-  const token=document.getElementById('hotmart-token').value.trim();
-  const price=document.getElementById('hotmart-price').value.trim();
-  const currency=document.getElementById('hotmart-currency').value;
-  if(!token){toast('Ingresá el token de Hotmart','⚠');return;}
-  if(!price){toast('Ingresá el precio','⚠');return;}
-  document.getElementById('hotmart-btn').disabled=true;
-  try{
-    const r=await fetch('https://developers.hotmart.com/product/api/v2/product',{
-      method:'POST',headers:{'Content-Type':'application/json','Authorization':token.startsWith('Bearer')?token:`Bearer ${token}`},
-      body:JSON.stringify({name:courseData.titulo,description:courseData.promesa,price:{currency_code:currency,value:parseFloat(price)},format:'VIDEO_COURSE'})
-    });
-    if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.message||`Error ${r.status}`);}
-    const d=await r.json();
-    const link=`https://pay.hotmart.com/${d.id||d.product_id}`;
-    document.getElementById('hotmart-result-box').style.display='block';
-    const la=document.getElementById('hotmart-link-out');la.href=link;la.textContent=link;
-    toast('Publicado en Hotmart','🔥');
-  }catch(e){
-    toast('Error: '+e.message,'✗',5000);
-  }finally{document.getElementById('hotmart-btn').disabled=false;}
-}
-function showHotmartManual(){const el=document.getElementById('hotmart-manual-box');el.style.display=el.style.display==='none'?'block':'none';}
-function copyHotmartData(){
-  if(!courseData)return;
-  const t=`TÍTULO: ${courseData.titulo}\n\nDESCRIPCIÓN:\n${courseData.promesa}\n\nMÓDULOS:\n${(courseData.modulos||[]).map(m=>`${m.numero}. ${m.titulo}\n${(m.clases||[]).map(c=>`   - ${c.titulo}`).join('\n')}`).join('\n\n')}\n\nLANDING:\n${courseData.landing_copy||''}`;
-  navigator.clipboard.writeText(t).then(()=>toast('Copiado','✓'));
-}
-
-// ── Copy ──────────────────────────────────────────────────────────────────────
-function copyCourse(){navigator.clipboard.writeText(document.getElementById('course-output').innerText).then(()=>toast('Copiado'));}
-
-// ── PDF Export ────────────────────────────────────────────────────────────────
-function exportPDF(){
-  if(!courseData)return;
-  toast('Generando PDF...','⏳',8000);
-  const{jsPDF}=window.jspdf;
-  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-  const W=210,M=18,MW=W-M*2;
-  let y=0;
-  const C={bg:[13,13,15],acc:[200,240,96],text:[240,239,232],t2:[155,154,148],card:[20,20,23],bdr:[40,40,46]};
-  function newPage(){doc.addPage();y=M;doc.setDrawColor(...C.bdr);doc.setLineWidth(.3);doc.line(M,8,W-M,8);}
-  function checkY(n=10){if(y+n>280)newPage();}
-  function sf(s,st='normal',c=C.text){doc.setFontSize(s);doc.setFont('helvetica',st);doc.setTextColor(...c);}
-  function fr(x,ry,w,h,c){doc.setFillColor(...c);doc.roundedRect(x,ry,w,h,2,2,'F');}
-
-  // cover
-  doc.setFillColor(...C.bg);doc.rect(0,0,W,297,'F');
-  doc.setFillColor(...C.acc);doc.rect(0,0,W,3,'F');
-  doc.setFillColor(...C.acc);doc.roundedRect(M,22,11,11,2,2,'F');
-  sf(8,'bold',C.bg);doc.text('✦',M+3.5,29);
-  sf(10,'normal',C.t2);doc.text('CourseAI',M+15,29);
-  y=50;sf(22,'bold',C.text);
-  doc.splitTextToSize(courseData.titulo||'Curso',MW).forEach(l=>{doc.text(l,M,y);y+=9;});
-  if(courseData.subtitulo){y+=2;sf(11,'normal',C.t2);doc.splitTextToSize(courseData.subtitulo,MW).forEach(l=>{doc.text(l,M,y);y+=5.5;});}
-  y+=7;const chips=[courseData.nivel,courseData.duracion,courseData.precio_sugerido,`${(courseData.modulos||[]).length} módulos`].filter(Boolean);
-  let cx=M;chips.forEach(ch=>{const cw=doc.getTextWidth(ch)+8;fr(cx,y-4,cw,7,C.card);doc.setDrawColor(...C.bdr);doc.setLineWidth(.3);doc.roundedRect(cx,y-4,cw,7,1.5,1.5,'S');sf(8,'normal',C.t2);doc.text(ch,cx+4,y);cx+=cw+4;});y+=11;
-  if(courseData.promesa){fr(M,y,MW,2,C.acc);y+=4;sf(9,'normal',C.t2);doc.splitTextToSize(courseData.promesa,MW-4).forEach(l=>{doc.text(l,M+2,y);y+=4;});}
-  doc.setFillColor(...C.acc);doc.rect(0,294,W,3,'F');
-
-  // modules
-  newPage();doc.setFillColor(...C.bg);doc.rect(0,0,W,297,'F');
-  sf(8,'bold',C.acc);doc.text('ESTRUCTURA DEL CURSO',M,y);y+=7;
-  (courseData.modulos||[]).forEach((mod,mi)=>{
-    checkY(18);fr(M,y,MW,11,C.card);doc.setDrawColor(...C.bdr);doc.setLineWidth(.3);doc.roundedRect(M,y,MW,11,2,2,'S');
-    fr(M+2,y+1.5,7,8,[40,50,40]);sf(7,'bold',C.acc);doc.text(String(mod.numero||mi+1),M+4,y+6.5);
-    sf(9,'bold',C.text);doc.text(mod.titulo||'',M+12,y+6.5);
-    if(mod.duracion){sf(7,'normal',C.t2);doc.text(mod.duracion,W-M-2,y+6.5,{align:'right'});}
-    y+=13;
-    if(mod.objetivo){sf(7,'normal',C.t2);doc.splitTextToSize(mod.objetivo,MW-4).forEach(l=>{doc.text(l,M+2,y);y+=3.5;});y+=1;}
-    (mod.clases||[]).forEach(cl=>{
-      checkY(7);const ti={video:'▶',ejercicio:'✏',recurso:'↓',evaluacion:'◉'}[cl.tipo]||'▶';
-      sf(7,'normal',C.acc);doc.text(ti,M+3,y);sf(7,'bold',C.text);doc.text(cl.titulo||'',M+8,y);y+=3.5;
-      if(cl.descripcion){sf(6,'normal',C.t2);doc.splitTextToSize(cl.descripcion,MW-12).forEach(l=>{doc.text(l,M+8,y);y+=3;});}
-      y+=1;
-    });y+=4;
-  });
-
-  // extras + sales
-  if(courseData.ejercicios?.length||courseData.recursos?.length||courseData.email_venta){
-    newPage();doc.setFillColor(...C.bg);doc.rect(0,0,W,297,'F');
-    sf(8,'bold',C.acc);doc.text('MATERIALES',M,y);y+=7;
-    if(courseData.ejercicios?.length){sf(9,'bold',C.text);doc.text('Ejercicios',M,y);y+=5;courseData.ejercicios.forEach(e=>{checkY(5);sf(7,'normal',C.t2);doc.text('• '+e,M+2,y);y+=4;});y+=3;}
-    if(courseData.recursos?.length){checkY(9);sf(9,'bold',C.text);doc.text('Recursos descargables',M,y);y+=5;courseData.recursos.forEach(r=>{checkY(5);sf(7,'normal',C.t2);doc.text('↓ '+r,M+2,y);y+=4;});y+=3;}
-    if(courseData.email_venta){checkY(9);sf(9,'bold',C.text);doc.text('Email de lanzamiento',M,y);y+=5;sf(7,'normal',C.t2);doc.splitTextToSize(courseData.email_venta,MW-4).forEach(l=>{checkY(4);doc.text(l,M+2,y);y+=3.5;});y+=4;}
-    if(courseData.landing_copy){checkY(9);sf(9,'bold',C.text);doc.text('Landing copy',M,y);y+=5;sf(7,'normal',C.t2);doc.splitTextToSize(courseData.landing_copy,MW-4).forEach(l=>{checkY(4);doc.text(l,M+2,y);y+=3.5;});}
-  }
-
-  const pc=doc.getNumberOfPages();
-  for(let i=1;i<=pc;i++){doc.setPage(i);sf(7,'normal',C.t2);doc.text(`${i}/${pc}`,W-M,291,{align:'right'});doc.text('CourseAI',M,291);}
-  const fn=(courseData.titulo||'curso').toLowerCase().replace(/[^a-z0-9]/g,'-').substring(0,38)+'.pdf';
+  var fn = (courseData.titulo||'curso').toLowerCase().replace(/[^a-z0-9]/g,'-').substring(0,38)+'.pdf';
   doc.save(fn);
-  toast('PDF descargado','✓');
+  toast('PDF descargado', '✓');
 }
 </script>
 </body>
