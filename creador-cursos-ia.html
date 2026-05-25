@@ -322,8 +322,8 @@ function renderCourse(c) {
   }).join('');
 
   var ex = [];
-  if (c.ejercicios && c.ejercicios.length) ex.push('<div class="extra-card"><div class="extra-title">✏ Ejercicios</div><ul class="extra-list">' + c.ejercicios.map(function(e) { return '<li>' + e + '</li>'; }).join('') + '</ul></div>');
-  if (c.recursos && c.recursos.length) ex.push('<div class="extra-card"><div class="extra-title">↓ Recursos</div><ul class="extra-list">' + c.recursos.map(function(r) { return '<li>' + r + '</li>'; }).join('') + '</ul></div>');
+  if (c.ejercicios && c.ejercicios.length) ex.push('<div class="extra-card"><div class="extra-title">✏ Ejercicios</div><ul class="extra-list">' + c.ejercicios.map(function(e) { return '<li>' + (typeof e === 'string' ? e : e.titulo || e.descripcion || JSON.stringify(e)) + '</li>'; }).join('') + '</ul></div>');
+  if (c.recursos && c.recursos.length) ex.push('<div class="extra-card"><div class="extra-title">↓ Recursos</div><ul class="extra-list">' + c.recursos.map(function(r) { return '<li>' + (typeof r === 'string' ? r : r.titulo || r.descripcion || JSON.stringify(r)) + '</li>'; }).join('') + '</ul></div>');
   if (c.faq && c.faq.length) ex.push('<div class="extra-card" style="grid-column:1/-1"><div class="extra-title">? FAQ</div><ul class="extra-list">' + c.faq.map(function(f) { return '<li><span><b>' + f.pregunta + '</b><br>' + f.respuesta + '</span></li>'; }).join('') + '</ul></div>');
 
   var sal = [];
