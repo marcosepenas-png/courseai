@@ -331,6 +331,9 @@ app.post('/api/generate-course', requireAuth, async (req, res) => {
 });
 
 // ── Health check ──────────────────────────────────────────────────────────────
+app.get('/', (req, res) => {
+  res.redirect('/creador-cursos-ia.html');
+});
 app.get('/api/health', (req, res) => {
   res.json({ status:'ok', mp:!!process.env.MP_ACCESS_TOKEN, anthropic:!!process.env.ANTHROPIC_API_KEY, email:!!process.env.SMTP_USER, timestamp:new Date().toISOString() });
 });
