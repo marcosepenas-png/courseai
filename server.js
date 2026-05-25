@@ -317,7 +317,7 @@ app.post('/api/webhook', async (req, res) => {
 });
 
 // ── Anthropic proxy (protegido) ───────────────────────────────────────────────
-app.post('/api/generate-course', requireAuth, async (req, res) => {
+app.post('/api/generate-course', async (req, res) => {
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method:'POST',
