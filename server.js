@@ -338,7 +338,7 @@ process.on('uncaughtException', err => { console.error('ERROR:', err.message, er
 process.on('unhandledRejection', r => { console.error('REJECTION:', r); });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`\n🚀 CourseAI corriendo en http://localhost:${PORT}`);
   console.log(`   Mercado Pago: ${process.env.MP_ACCESS_TOKEN?'✓':'✗'}`);
   console.log(`   Anthropic:    ${process.env.ANTHROPIC_API_KEY?'✓':'✗'}`);
