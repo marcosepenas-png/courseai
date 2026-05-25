@@ -135,7 +135,7 @@ select option{background:var(--bg3);}
 .mp-step-n.done{background:rgba(93,232,106,0.12);border-color:var(--green);color:var(--green);}
 .mp-step-n.active{background:rgba(0,158,227,0.1);border-color:var(--mp);color:var(--mp);animation:pulse .9s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.mp-step-info{}
+.mp-step-info
 .mp-step-t{font-size:12px;font-weight:500;}
 .mp-step-d{font-size:11px;color:var(--text2);margin-top:1px;}
 .notice{background:rgba(200,240,96,0.05);border:1px solid rgba(200,240,96,0.13);border-radius:var(--radius-sm);padding:9px 13px;font-size:11px;color:var(--accent);margin-bottom:1rem;line-height:1.5;}
@@ -339,7 +339,7 @@ ${document.getElementById('notes').value?'NOTAS: '+document.getElementById('note
 Responde ÚNICAMENTE con JSON válido sin markdown:
 {"titulo":"","subtitulo":"","nivel":"","duracion":"","precio_sugerido":"","promesa":"","para_quien":[],"no_para_quien":[],"modulos":[{"numero":1,"titulo":"","objetivo":"","duracion":"","clases":[{"titulo":"","descripcion":"","tipo":"video"}]}],"ejercicios":[],"recursos":[],"proyecto_final":"","faq":[{"pregunta":"","respuesta":""}],"email_venta":"","landing_copy":"","posts_ig":[]}`;
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,messages:[{role:'user',content:prompt}]})});
+    const r=await fetch('/api/generate-course',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('ca-token')},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,messages:[{role:'user',content:prompt}]})});
     if(!r.ok)throw new Error(`API ${r.status}`);
     const d=await r.json();
     const raw=d.content[0].text.trim().replace(/^```json\n?/,'').replace(/\n?```$/,'').trim();
